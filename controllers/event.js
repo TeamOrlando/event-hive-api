@@ -1,6 +1,6 @@
 import {eventModel} from "../models/event_e_models.js";
 
-export const getEvents = async (req, res) => {
+export const getEvents = async (req, res, next) => {
     try {
         // Get querry params
         const {limit, skip, search } = req.query;
@@ -14,7 +14,18 @@ export const getEvents = async (req, res) => {
     } catch (error) {
       next (error);  
     }
-}
+};
+
+//get single event by ID
+
+export const getEvent = async (req, res, next) => {
+  try {
+    const getOneEvent = await EventModel.findById(req.params.id);
+    res.json(getOneEvent)
+  } catch (error) {
+    next(error);
+  }
+};
 
 // post Recipe
 export const postEvent = async (req, res, next) => {
@@ -55,13 +66,4 @@ export const patchEvent = async (req, res, next) => {
    } 
 }
 
-//get single event by ID
 
-export const getEvent = async (req, res, next) => {
-    try {
-      const getEventById = await EventModel.findById(req.params.body)
-      res.json(getEventById)
-    } catch (error) {
-      next(error)
-    }
-  }

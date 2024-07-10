@@ -1,5 +1,7 @@
 import {Types, models, schema} from "mongoose";
-import normalize from "normalize-mongoose";
+
+// import 'dotenv/config'
+import { toJSON } from "@reis/mongoose-to-json";
 
 const eventSchema = new Schema({
     name: { type: String, unique: true, require: true},
@@ -16,6 +18,5 @@ const eventSchema = new Schema({
     timestamps: true
 });
 
-recipeSchema.plugin(normalize);
-
+eventSchema.plugin(toJSON)
 export const EventModel = model('Event', eventSchema);

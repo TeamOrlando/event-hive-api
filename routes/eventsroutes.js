@@ -15,5 +15,6 @@ eventRouter.patch('/event/:id', patchEvent );
 eventRouter.delete('/event/:id', deleteEvent);
 
 eventRouterr.get('/event/:id', getEvent);
+
 // Export Router
 export default eventRouter;
